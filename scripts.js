@@ -31,10 +31,10 @@ function checkForMatch() {
 }
 
 function disableCards() {
-  
+
 }
 
-unFlipCards() {
+function unFlipCards() {
 
 }
 
