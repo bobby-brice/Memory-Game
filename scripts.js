@@ -11,8 +11,9 @@ let secondCard;
  function startGame() {
   document.getElementById('overlay').style.display = 'none';
   resetBoard();
-
  }
+
+ 
 
  
  function flipCard() {
