@@ -13,7 +13,7 @@ let secondCard;
   resetBoard();
  }
 
- 
+
 
  
  function flipCard() {
@@ -30,6 +30,7 @@ let secondCard;
     }
     secondCard = this;
     checkForMatch();
+    checkForWin();
   }
   
   function checkForMatch() {
@@ -67,6 +68,34 @@ let secondCard;
       card.style.order = random;
     });
   })();
+
+  let isActive = false;
+
+  function checkForWin() {
+    const flip = document.querySelectorAll(".flip");
+    if (flip.length === cards.length) {
+      gameOver(true);
+      firstCard.classList.remove('flip');
+      secondCard.classList.remove('flip');
+    } else {
+      return false;
+    }
+  }
+
+  function gameOver(gameWon) {
+    const overlay = document.getElementById('overlay');
+    const message = document.getElementById('game-over-message');
+    overlay.style.display = 'flex';
+
+    if (gameWon == true) {
+      message.innerHTML = 'You Win!';
+      overlay.setAttribute('class', 'win');
+
+    } else if (gameWon == false) {
+      message.innerHTML = 'Carol Fucking Basking!';
+      overlay.setAttribute('class', 'lose');
+    }
+  }
   
   startButton.addEventListener('click', function () {
     startGame();
