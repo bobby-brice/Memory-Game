@@ -5,17 +5,14 @@ let lockBoard = false;
 let firstCard;
 let secondCard;
 
+
 //Match Card
 //When we click the first card, it needs to wait until another card is flipped so you need vars to managed the flip state. In case there is no card flipped
 
  function startGame() {
   document.getElementById('overlay').style.display = 'none';
-  resetBoard();
  }
 
-
-
- 
  function flipCard() {
    if(lockBoard) return;
    if (this === firstCard) return;
@@ -62,22 +59,18 @@ let secondCard;
     [firstCard, secondCard] = [null, null];
   }
   
-  (function shuffle() {
+  function shuffle() {
     cards.forEach(card => {
       let random = Math.floor(Math.random() * 16);
       card.style.order = random;
     });
-  })();
-
-  let isActive = false;
+  };
 
   function checkForWin() {
     const flip = document.querySelectorAll(".flip");
     if (flip.length === cards.length) {
       gameOver(true);
-      resetBoard();
-      cards.classList.remove('flip');
-      cards.classList.remove('flip');
+      
     } else {
       return false;
     }
@@ -88,18 +81,30 @@ let secondCard;
     const message = document.getElementById('game-over-message');
     overlay.style.display = 'flex';
 
-    if (gameWon == true) {
-      message.innerHTML = 'You Win!';
+    if (gameWon === true) {
       overlay.setAttribute('class', 'win');
+      message.innerHTML = 'You Win!';
       overlay.style.backgroundImage = "url('assets/winner.jpg')";
+      resetGame();
 
     } else if (gameWon == false) {
       message.innerHTML = 'Carol Fucking Basking!';
       overlay.setAttribute('class', 'lose');
     }
   }
+
+  function resetGame() {
+    if(gameOver) {
+      const cards = document.querySelectorAll('.flip');
+      console.log(cards);
+      cards.forEach(card => card.classList.remove('flip'));
+      cards.forEach(card => card.addEventListener('click', flipCard));
+      
+    }
+  }
   
   startButton.addEventListener('click', function () {
+    shuffle();
     startGame();
   });
   
