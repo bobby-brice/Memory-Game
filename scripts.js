@@ -5,7 +5,7 @@ let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard;
 let secondCard;
-let timeLimit = 30;
+let timeLimit = 60;
 
 
 //Match Card
@@ -19,12 +19,10 @@ function startGame() {
       clearInterval(countdown);
       gameOver(false);
     }
-    document.getElementById('progressBar').value = 30 - timeLimit;
+    document.getElementById('progressBar').value = 60 - timeLimit;
     timeLimit -= 1
   }, 1000);
 }
-
-
 
  function flipCard() {
    if(lockBoard) return;
@@ -98,11 +96,14 @@ function startGame() {
       overlay.setAttribute('class', 'win');
       message.innerHTML = 'You Win!';
       overlay.style.backgroundImage = "url('assets/winner.jpg')";
+      timeLimit = 60;
       resetGame();
       
     } else if (gameWon == false) {
       message.innerHTML = 'Carol Fucking Basking!';
       overlay.setAttribute('class', 'lose');
+      overlay.style.backgroundImage = "url('assets/loser.jpg')";
+      timeLimit = 60;
       resetGame();
     }
   }
@@ -112,8 +113,7 @@ function startGame() {
       const cards = document.querySelectorAll('.flip');
       console.log(cards);
       cards.forEach(card => card.classList.remove('flip'));
-      cards.forEach(card => card.addEventListener('click', flipCard));
-      
+      cards.forEach(card => card.addEventListener('click', flipCard));  
     }
   }
   
