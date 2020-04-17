@@ -75,8 +75,9 @@ let secondCard;
     const flip = document.querySelectorAll(".flip");
     if (flip.length === cards.length) {
       gameOver(true);
-      firstCard.classList.remove('flip');
-      secondCard.classList.remove('flip');
+      resetBoard();
+      cards.classList.remove('flip');
+      cards.classList.remove('flip');
     } else {
       return false;
     }
@@ -90,6 +91,7 @@ let secondCard;
     if (gameWon == true) {
       message.innerHTML = 'You Win!';
       overlay.setAttribute('class', 'win');
+      overlay.style.backgroundImage = "url('assets/winner.jpg')";
 
     } else if (gameWon == false) {
       message.innerHTML = 'Carol Fucking Basking!';

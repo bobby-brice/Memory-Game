@@ -156,6 +156,13 @@ button {
    /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
 
+#game-over-message {
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  font-size: 3rem;
+}
+
 .start a {
   color: #fff;
 }
