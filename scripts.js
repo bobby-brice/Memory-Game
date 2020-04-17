@@ -1,17 +1,30 @@
 const cards = document.querySelectorAll('.memory-card');
 const startButton = document.getElementById('btn__reset');
+const timerDisplay = document.querySelector('.display__time-left');
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard;
 let secondCard;
+let timeLimit = 30;
 
 
 //Match Card
 //When we click the first card, it needs to wait until another card is flipped so you need vars to managed the flip state. In case there is no card flipped
 
- function startGame() {
-  document.getElementById('overlay').style.display = 'none';
- }
+function startGame() {
+  document.getElementById('overlay').style.display = 'none';  
+  
+  let countdown = setInterval(() => {
+    if (timeLimit <= 0) {
+      clearInterval(countdown);
+      gameOver(false);
+    }
+    document.getElementById('progressBar').value = 30 - timeLimit;
+    timeLimit -= 1
+  }, 1000);
+}
+
+
 
  function flipCard() {
    if(lockBoard) return;
