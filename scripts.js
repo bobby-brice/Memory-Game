@@ -86,10 +86,11 @@ let secondCard;
       message.innerHTML = 'You Win!';
       overlay.style.backgroundImage = "url('assets/winner.jpg')";
       resetGame();
-
+      
     } else if (gameWon == false) {
       message.innerHTML = 'Carol Fucking Basking!';
       overlay.setAttribute('class', 'lose');
+      resetGame();
     }
   }
 
