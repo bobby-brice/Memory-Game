@@ -21,7 +21,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
-  background: #060AB2;
+  background: midnightblue;
 }
 
 .main-container {
